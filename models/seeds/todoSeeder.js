@@ -11,10 +11,6 @@ db.on("error", () => {
 
 db.once("open", () => {
   console.log("db connected!");
-});
-
-db.once("open", () => {
-  console.log("db connected!");
 
   for (var i = 0; i < 10; i++) {
     Todo.create({ name: "name-" + i });
