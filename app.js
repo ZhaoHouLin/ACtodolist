@@ -27,9 +27,6 @@ db.once("open", () => {
   console.log("mongodb connected!");
 });
 
-// 設定路由
-// Todo 首頁
-
 // 載入路由器
 app.use("/", require("./routes/home"));
 app.use("/todos", require("./routes/todo"));
