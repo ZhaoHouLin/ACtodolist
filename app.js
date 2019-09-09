@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
+const session = require("express-session");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,6 +14,14 @@ app.set("view engine", "handlebars");
 
 // 設定 method-override
 app.use(methodOverride("_method"));
+
+app.use(
+  session({
+    secret: "your secret key", // secret: 定義一組屬於你的字串做為私鑰
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 mongoose.connect("mongodb://localhost/todo", { useNewUrlParser: true });
 
