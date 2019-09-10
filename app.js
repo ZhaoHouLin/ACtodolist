@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const passport = require("passport"); // 載入 passport
+const flash = require("connect-flash");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -63,6 +64,19 @@ db.on("error", () => {
 // 連線成功
 db.once("open", () => {
   console.log("mongodb connected!");
+});
+
+app.use(flash()); // 使用 Connect flash
+
+// 建立 local variables
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  res.locals.isAuthenticated = req.isAuthenticated(); // 辨識使用者是否已經登入的變數，讓 view 可以使用
+
+  // 新增兩個 flash message 變數
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.warning_msg = req.flash("warning_msg");
+  next();
 });
 
 // 載入路由器
