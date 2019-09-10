@@ -9,7 +9,7 @@ router.get("/login", (req, res) => {
 });
 
 // 登入檢查
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     // 使用 passport 認證
     successRedirect: "/", // 登入成功會回到根目錄
