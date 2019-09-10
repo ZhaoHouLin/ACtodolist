@@ -43,7 +43,10 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect("mongodb://localhost/todo", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/todo", {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 const db = mongoose.connection;
 
