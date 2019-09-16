@@ -50,7 +50,7 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect("mongodb://localhost/todo", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/todo", {
   useNewUrlParser: true,
   useCreateIndex: true
 });
@@ -85,6 +85,7 @@ app.use("/todos", require("./routes/todo"));
 app.use("/users", require("./routes/user"));
 app.use("/auth", require("./routes/auths")); // 把 auth route 加進來
 
-app.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+app.listen(process.env.PORT || port, () => {
+  // console.log(`http://localhost:${port}`);
+  console.log("App is running");
 });

@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Todo = require("../todo.js");
 
-mongoose.connect("mongodb://localhost/todo", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/todo", {
+  useNewUrlParser: true
+});
 
 const db = mongoose.connection;
 
