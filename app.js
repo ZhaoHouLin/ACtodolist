@@ -86,6 +86,6 @@ app.use("/users", require("./routes/user"));
 app.use("/auth", require("./routes/auths")); // 把 auth route 加進來
 
 app.listen(process.env.PORT || port, () => {
-  // console.log(`http://localhost:${port}`);
-  console.log("App is running");
+  console.log(`http://localhost:${port}`);
+  // console.log("App is running");
 });
